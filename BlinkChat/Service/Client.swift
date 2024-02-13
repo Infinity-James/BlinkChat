@@ -12,10 +12,10 @@ public protocol APIClient: AnyObject {
 }
 
 internal final class LiveClient: APIClient {
-    let network: Network
     let baseURL: URL
+    let network: Network
     
-    init(network: Network, baseURL: URL) {
+    init(baseURL: URL, network: Network) {
         self.network = network
         self.baseURL = baseURL
     }
