@@ -24,10 +24,22 @@ internal final class LiveClient: APIClient {
         try await parse(network.request(Endpoint.chats.request(baseURL: baseURL)))
     }
     
+    private static let dateFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFractionalSeconds
+        return formatter
+    }()
+    
     func parse<T: Decodable>(_ data: Data?) throws -> T {
         guard let data else { throw ClientError.noData }
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            guard let date = Self.dateFormatter.date(from: dateString) else { throw ClientError.decodingFailed(ClientError.invalidDate) }
+            return date
+        }
         do {
             return try decoder.decode(T.self, from: data)
         } catch {
@@ -75,6 +87,7 @@ public enum ClientError: Error {
     case endpointCreationFailed
     case noData
     case decodingFailed(Error)
+    case invalidDate
 }
 
 internal protocol Network: AnyObject {

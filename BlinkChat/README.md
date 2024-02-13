@@ -8,3 +8,4 @@
 4. I've used reference types for the services, allowing view models and coordinators to hold onto them weakly and share them.
 5. I've used value types for the models to keep them light and immutable.
 6. Realm is my local database of choice in this case because it is easy to set up and saves time. My decision to keep the models immutable requires mapping from the database models to the consumer models.
+7. I modelled the endpoints as enums, allowing for easy construction against a given base URL - suitable for when an app needs to support live and dev environments.
