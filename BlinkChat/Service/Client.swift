@@ -9,6 +9,7 @@ import Foundation
 
 public protocol APIClient: AnyObject {
     func chats() async throws -> [Chat]
+    func postMessage(_ message: PendingMessage, toChatWithID id: String) async throws -> Message
 }
 
 internal final class LiveClient: APIClient {
@@ -22,6 +23,10 @@ internal final class LiveClient: APIClient {
     
     func chats() async throws -> [Chat] {
         try await parse(network.request(Endpoint.chats.request(baseURL: baseURL)))
+    }
+    
+    func postMessage(_ message: PendingMessage, toChatWithID id: String) async throws -> Message {
+        try await parse(network.request(Endpoint.postMessage(message, id).request(baseURL: baseURL)))
     }
     
     private static let dateFormatter: ISO8601DateFormatter = {
@@ -50,11 +55,14 @@ internal final class LiveClient: APIClient {
 
 internal enum Endpoint {
     case chats
+    case postMessage(PendingMessage, Chat.ID)
     
     var path: String {
         switch self {
         case .chats:
             "/v1/chats"
+        case .postMessage(_, let chatID):
+            "/v1/chats/\(chatID)"
         }
     }
     
@@ -62,6 +70,8 @@ internal enum Endpoint {
         switch self {
         case .chats:
             return "GET"
+        case .postMessage:
+            return "POST"
         }
     }
     
@@ -69,6 +79,8 @@ internal enum Endpoint {
         switch self {
         case .chats:
             break
+        case .postMessage(let message, _):
+            request.addJSONBody(message)
         }
     }
     
@@ -80,6 +92,18 @@ internal enum Endpoint {
         request.httpMethod = method
         try applyHeadersAndBody(to: &request)
         return request
+    }
+}
+
+extension URLRequest {
+    static let encoder: JSONEncoder = {
+        let e = JSONEncoder()
+        e.keyEncodingStrategy = .convertToSnakeCase
+        return e
+    }()
+    
+    mutating func addJSONBody<O: Encodable>(_ object: O) {
+        httpBody = try? Self.encoder.encode(object)
     }
 }
 
@@ -99,6 +123,16 @@ internal final class LiveNetwork: Network {
         //  this is a fake implementation for now.
         //  in a live application, I would use Alamofire if I wanted good support for adapting requests
         //  otherwise, if the client can be simpler, I'd use URLSession and do the work myself
-        try Data(contentsOf: Bundle.main.url(forResource: "dummy-data", withExtension: "json")!)
+        if request.httpMethod == "POST" {
+            return """
+            {
+                "id": "5f58bcd7c34da3af332cc123",
+                "text": "Message content",
+                "last_updated": "2020-07-15T06:40:25"
+            }
+            """.data(using: .utf8)
+        } else {
+            return try Data(contentsOf: Bundle.main.url(forResource: "dummy-data", withExtension: "json")!)
+        }
     }
 }

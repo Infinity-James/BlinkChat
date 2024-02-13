@@ -35,16 +35,32 @@ final class ClientTests: XCTestCase {
     
     func testPostMessage_success() async throws {
         let client = LiveClient(baseURL: baseURL, network: mockNetwork)
-        let id = "test-id"
-        let message = "Test content."
-        let messageData = message.data(using: .utf8)
+        let chatID = "test-chat-id"
+        let messageContent = "Test content."
+        let pendingMessage = PendingMessage(id: .init(), created: .now, content: messageContent)
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        let messageData = try encoder.encode(pendingMessage)
+        let messageID = "test-message-id"
+        
         mockNetwork.makeRequest = { [baseURL] request in
             XCTAssertEqual(request.httpMethod, "POST")
-            XCTAssertEqual(request.url!.absoluteString, baseURL.absoluteString + "/v1/chats/" + id)
-            XCTAssertEqual(request.httpBody, messageData)
-            return nil
+            XCTAssertEqual(request.url!.absoluteString, baseURL.absoluteString + "/v1/chats/" + chatID)
+            let bodyString = try JSONSerialization.jsonObject(with: request.httpBody!) as! [String: Any]
+            let dataString = try JSONSerialization.jsonObject(with: messageData) as! [String: Any]
+            XCTAssertEqual(dataString["id"] as! String, bodyString["id"]  as! String)
+            return """
+            {
+                "id": "\(messageID)",
+                "text": "\(messageContent)",
+                "last_updated": "2020-07-15T06:40:25"
+            }
+            """.data(using: .utf8)
         }
-        XCTAssertNoThrow(try await client.postMessage(message, toChatWithID: id))
+        
+        let createdMessage = try await client.postMessage(pendingMessage, toChatWithID: chatID)
+        XCTAssertEqual(createdMessage.id, messageID)
+        XCTAssertEqual(createdMessage.content, messageContent)
     }
 }
 
