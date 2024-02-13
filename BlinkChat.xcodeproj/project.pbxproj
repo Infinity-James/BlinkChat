@@ -11,20 +11,12 @@
 		1AB3FB3D2B7B96A500F1F223 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB3C2B7B96A500F1F223 /* ContentView.swift */; };
 		1AB3FB3F2B7B96A800F1F223 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3FB3E2B7B96A800F1F223 /* Assets.xcassets */; };
 		1AB3FB422B7B96A800F1F223 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3FB412B7B96A800F1F223 /* Preview Assets.xcassets */; };
-		1AB3FB4C2B7B96A800F1F223 /* BlinkChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB4B2B7B96A800F1F223 /* BlinkChatTests.swift */; };
-		1AB3FB562B7B96A800F1F223 /* BlinkChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB552B7B96A800F1F223 /* BlinkChatUITests.swift */; };
-		1AB3FB582B7B96A800F1F223 /* BlinkChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB572B7B96A800F1F223 /* BlinkChatUITestsLaunchTests.swift */; };
+		1AB3FB4C2B7B96A800F1F223 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB4B2B7B96A800F1F223 /* ClientTests.swift */; };
+		1AB3FB652B7B9BED00F1F223 /* test-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3FB642B7B9BED00F1F223 /* test-data.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		1AB3FB482B7B96A800F1F223 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AB3FB2F2B7B96A500F1F223 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1AB3FB362B7B96A500F1F223;
-			remoteInfo = BlinkChat;
-		};
-		1AB3FB522B7B96A800F1F223 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1AB3FB2F2B7B96A500F1F223 /* Project object */;
 			proxyType = 1;
@@ -40,10 +32,9 @@
 		1AB3FB3E2B7B96A800F1F223 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AB3FB412B7B96A800F1F223 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1AB3FB472B7B96A800F1F223 /* BlinkChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlinkChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AB3FB4B2B7B96A800F1F223 /* BlinkChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkChatTests.swift; sourceTree = "<group>"; };
-		1AB3FB512B7B96A800F1F223 /* BlinkChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlinkChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AB3FB552B7B96A800F1F223 /* BlinkChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkChatUITests.swift; sourceTree = "<group>"; };
-		1AB3FB572B7B96A800F1F223 /* BlinkChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1AB3FB4B2B7B96A800F1F223 /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
+		1AB3FB642B7B9BED00F1F223 /* test-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-data.json"; sourceTree = "<group>"; };
+		1AB3FB662B7B9C2200F1F223 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +52,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1AB3FB4E2B7B96A800F1F223 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -76,7 +60,6 @@
 			children = (
 				1AB3FB392B7B96A500F1F223 /* BlinkChat */,
 				1AB3FB4A2B7B96A800F1F223 /* BlinkChatTests */,
-				1AB3FB542B7B96A800F1F223 /* BlinkChatUITests */,
 				1AB3FB382B7B96A500F1F223 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,7 +69,6 @@
 			children = (
 				1AB3FB372B7B96A500F1F223 /* BlinkChat.app */,
 				1AB3FB472B7B96A800F1F223 /* BlinkChatTests.xctest */,
-				1AB3FB512B7B96A800F1F223 /* BlinkChatUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +80,7 @@
 				1AB3FB3C2B7B96A500F1F223 /* ContentView.swift */,
 				1AB3FB3E2B7B96A800F1F223 /* Assets.xcassets */,
 				1AB3FB402B7B96A800F1F223 /* Preview Content */,
+				1AB3FB662B7B9C2200F1F223 /* README.md */,
 			);
 			path = BlinkChat;
 			sourceTree = "<group>";
@@ -113,18 +96,10 @@
 		1AB3FB4A2B7B96A800F1F223 /* BlinkChatTests */ = {
 			isa = PBXGroup;
 			children = (
-				1AB3FB4B2B7B96A800F1F223 /* BlinkChatTests.swift */,
+				1AB3FB4B2B7B96A800F1F223 /* ClientTests.swift */,
+				1AB3FB642B7B9BED00F1F223 /* test-data.json */,
 			);
 			path = BlinkChatTests;
-			sourceTree = "<group>";
-		};
-		1AB3FB542B7B96A800F1F223 /* BlinkChatUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1AB3FB552B7B96A800F1F223 /* BlinkChatUITests.swift */,
-				1AB3FB572B7B96A800F1F223 /* BlinkChatUITestsLaunchTests.swift */,
-			);
-			path = BlinkChatUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,24 +140,6 @@
 			productReference = 1AB3FB472B7B96A800F1F223 /* BlinkChatTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1AB3FB502B7B96A800F1F223 /* BlinkChatUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1AB3FB612B7B96A800F1F223 /* Build configuration list for PBXNativeTarget "BlinkChatUITests" */;
-			buildPhases = (
-				1AB3FB4D2B7B96A800F1F223 /* Sources */,
-				1AB3FB4E2B7B96A800F1F223 /* Frameworks */,
-				1AB3FB4F2B7B96A800F1F223 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1AB3FB532B7B96A800F1F223 /* PBXTargetDependency */,
-			);
-			name = BlinkChatUITests;
-			productName = BlinkChatUITests;
-			productReference = 1AB3FB512B7B96A800F1F223 /* BlinkChatUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,10 +154,6 @@
 						CreatedOnToolsVersion = 15.2;
 					};
 					1AB3FB462B7B96A800F1F223 = {
-						CreatedOnToolsVersion = 15.2;
-						TestTargetID = 1AB3FB362B7B96A500F1F223;
-					};
-					1AB3FB502B7B96A800F1F223 = {
 						CreatedOnToolsVersion = 15.2;
 						TestTargetID = 1AB3FB362B7B96A500F1F223;
 					};
@@ -221,7 +174,6 @@
 			targets = (
 				1AB3FB362B7B96A500F1F223 /* BlinkChat */,
 				1AB3FB462B7B96A800F1F223 /* BlinkChatTests */,
-				1AB3FB502B7B96A800F1F223 /* BlinkChatUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,13 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AB3FB4F2B7B96A800F1F223 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				1AB3FB652B7B9BED00F1F223 /* test-data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,16 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AB3FB4C2B7B96A800F1F223 /* BlinkChatTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AB3FB4D2B7B96A800F1F223 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1AB3FB562B7B96A800F1F223 /* BlinkChatUITests.swift in Sources */,
-				1AB3FB582B7B96A800F1F223 /* BlinkChatUITestsLaunchTests.swift in Sources */,
+				1AB3FB4C2B7B96A800F1F223 /* ClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,11 +223,6 @@
 			isa = PBXTargetDependency;
 			target = 1AB3FB362B7B96A500F1F223 /* BlinkChat */;
 			targetProxy = 1AB3FB482B7B96A800F1F223 /* PBXContainerItemProxy */;
-		};
-		1AB3FB532B7B96A800F1F223 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1AB3FB362B7B96A500F1F223 /* BlinkChat */;
-			targetProxy = 1AB3FB522B7B96A800F1F223 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -512,42 +444,6 @@
 			};
 			name = Release;
 		};
-		1AB3FB622B7B96A800F1F223 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZFDEX86BMA;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.BlinkChatUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BlinkChat;
-			};
-			name = Debug;
-		};
-		1AB3FB632B7B96A800F1F223 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZFDEX86BMA;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.andbeyond.BlinkChatUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BlinkChat;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -574,15 +470,6 @@
 			buildConfigurations = (
 				1AB3FB5F2B7B96A800F1F223 /* Debug */,
 				1AB3FB602B7B96A800F1F223 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1AB3FB612B7B96A800F1F223 /* Build configuration list for PBXNativeTarget "BlinkChatUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1AB3FB622B7B96A800F1F223 /* Debug */,
-				1AB3FB632B7B96A800F1F223 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
