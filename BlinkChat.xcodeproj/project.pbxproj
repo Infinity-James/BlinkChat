@@ -15,6 +15,7 @@
 		1AB3FB652B7B9BED00F1F223 /* test-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3FB642B7B9BED00F1F223 /* test-data.json */; };
 		1AB3FB692B7B9DEF00F1F223 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB682B7B9DEF00F1F223 /* Client.swift */; };
 		1AB3FB6C2B7B9E9D00F1F223 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB6B2B7B9E9D00F1F223 /* Models.swift */; };
+		1AB3FB6F2B7BA4D400F1F223 /* dummy-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3FB6E2B7BA4D400F1F223 /* dummy-data.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		1AB3FB662B7B9C2200F1F223 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1AB3FB682B7B9DEF00F1F223 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		1AB3FB6B2B7B9E9D00F1F223 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		1AB3FB6E2B7BA4D400F1F223 /* dummy-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "dummy-data.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		1AB3FB392B7B96A500F1F223 /* BlinkChat */ = {
 			isa = PBXGroup;
 			children = (
+				1AB3FB6D2B7BA4C700F1F223 /* Resource */,
 				1AB3FB6A2B7B9E9600F1F223 /* Model */,
 				1AB3FB672B7B9DE300F1F223 /* Service */,
 				1AB3FB3A2B7B96A500F1F223 /* BlinkChatApp.swift */,
@@ -122,6 +125,14 @@
 				1AB3FB6B2B7B9E9D00F1F223 /* Models.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1AB3FB6D2B7BA4C700F1F223 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				1AB3FB6E2B7BA4D400F1F223 /* dummy-data.json */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +218,7 @@
 			files = (
 				1AB3FB422B7B96A800F1F223 /* Preview Assets.xcassets in Resources */,
 				1AB3FB3F2B7B96A800F1F223 /* Assets.xcassets in Resources */,
+				1AB3FB6F2B7BA4D400F1F223 /* dummy-data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
