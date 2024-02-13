@@ -10,7 +10,7 @@ import XCTest
 
 final class ClientTests: XCTestCase {
     func testFetchChats_success() async throws {
-        let client = APIClient(baseURL: baseURL, network: mockNetwork)
+        let client = LiveClient(baseURL: baseURL, network: mockNetwork)
         mockNetwork.dataFetch = { request in
             XCTAssertEqual(request.method, "GET")
             XCTAssertEqual(request.url?.absoluteString, baseURL?.absoluteString + "/v1/chats")
