@@ -91,6 +91,7 @@ private extension PendingMessage {
         db.content = content
         db.updated = created
         db.isPending = true
+        db.chatID = chatID
         return db
     }
 }

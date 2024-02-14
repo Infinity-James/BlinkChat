@@ -39,4 +39,7 @@ This is also where pending messages will be stored and attempted to be sent if a
 
 ## UI and UX
 
-1. This is a poor example of how much I value the look and feel of the apps that I create. This is because the requirements de-emphasised this aspect of the test, and I wanted to focus on that which was prioritised in the evaluation.
+This is a poor example of how much I value the look and feel of the apps that I create. This is because the requirements de-emphasised this aspect of the test, and I wanted to focus on that which was prioritised in the evaluation.
+
+## Error Handling
+There is minimal error handling, but everything is built with it in mind.
