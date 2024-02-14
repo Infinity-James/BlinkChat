@@ -9,13 +9,13 @@ import Foundation
 import RealmSwift
 
 public protocol Database: AnyObject {
-    func chats() -> [Chat]
+    func chats() -> [ClientChat]
     
     func pendingMessages(for chatID: String) -> [PendingMessage]
     
     func save(_ message: PendingMessage)
     
-    func save(_ chats: [Chat])
+    func save(_ chats: [ClientChat])
 }
 
 internal final class LiveDatabase: Database {
@@ -26,8 +26,8 @@ internal final class LiveDatabase: Database {
         Realm.Configuration.defaultConfiguration = config
     }
     
-    func chats() -> [Chat] {
-        try! Realm().objects(DBChat.self).map(Chat.init)
+    func chats() -> [ClientChat] {
+        try! Realm().objects(DBChat.self).map(ClientChat.init)
     }
     
     func pendingMessages(for chatID: String) -> [PendingMessage] {
@@ -38,12 +38,12 @@ internal final class LiveDatabase: Database {
         
     }
     
-    func save(_ chats: [Chat]) {
+    func save(_ chats: [ClientChat]) {
         
     }
 }
 
-private extension Chat {
+private extension ClientChat {
     var database: DBChat {
         let db = DBChat()
         db.id = id
@@ -57,11 +57,11 @@ private extension Chat {
         self.init(id: database.id,
                   name: database.name,
                   updated: database.updated,
-                  messages: database.messages.map(Message.init))
+                  messages: database.messages.map(ClientMessage.init))
     }
 }
 
-private extension Message {
+private extension ClientMessage {
     var database: DBMessage {
         let db = DBMessage()
         db.id = id

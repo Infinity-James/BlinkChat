@@ -8,8 +8,8 @@
 import Foundation
 
 public protocol APIClient: AnyObject {
-    func chats() async throws -> [Chat]
-    func postMessage(_ message: PendingMessage) async throws -> Message
+    func chats() async throws -> [ClientChat]
+    func postMessage(_ message: PendingMessage) async throws -> ClientMessage
 }
 
 internal final class LiveClient: APIClient {
@@ -21,11 +21,11 @@ internal final class LiveClient: APIClient {
         self.baseURL = baseURL
     }
     
-    func chats() async throws -> [Chat] {
+    func chats() async throws -> [ClientChat] {
         try await parse(network.request(Endpoint.chats.request(baseURL: baseURL)))
     }
     
-    func postMessage(_ message: PendingMessage) async throws -> Message {
+    func postMessage(_ message: PendingMessage) async throws -> ClientMessage {
         try await parse(network.request(Endpoint.postMessage(message).request(baseURL: baseURL)))
     }
     

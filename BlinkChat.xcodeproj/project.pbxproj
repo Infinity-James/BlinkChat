@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A83A4BA2B7BDB400098B989 /* DatabaseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A83A4B92B7BDB400098B989 /* DatabaseModels.swift */; };
 		1A83A4BC2B7CE9360098B989 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A83A4BB2B7CE9350098B989 /* StoreTests.swift */; };
+		1A83A4BE2B7CF0940098B989 /* ConsumerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A83A4BD2B7CF0940098B989 /* ConsumerModels.swift */; };
 		1AB3FB3B2B7B96A500F1F223 /* BlinkChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB3A2B7B96A500F1F223 /* BlinkChatApp.swift */; };
 		1AB3FB3D2B7B96A500F1F223 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB3C2B7B96A500F1F223 /* ContentView.swift */; };
 		1AB3FB3F2B7B96A800F1F223 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3FB3E2B7B96A800F1F223 /* Assets.xcassets */; };
@@ -16,7 +17,7 @@
 		1AB3FB4C2B7B96A800F1F223 /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB4B2B7B96A800F1F223 /* ClientTests.swift */; };
 		1AB3FB652B7B9BED00F1F223 /* test-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3FB642B7B9BED00F1F223 /* test-data.json */; };
 		1AB3FB692B7B9DEF00F1F223 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB682B7B9DEF00F1F223 /* Client.swift */; };
-		1AB3FB6C2B7B9E9D00F1F223 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB6B2B7B9E9D00F1F223 /* Models.swift */; };
+		1AB3FB6C2B7B9E9D00F1F223 /* ServerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB6B2B7B9E9D00F1F223 /* ServerModels.swift */; };
 		1AB3FB6F2B7BA4D400F1F223 /* dummy-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AB3FB6E2B7BA4D400F1F223 /* dummy-data.json */; };
 		1AB3FB712B7BD99300F1F223 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3FB702B7BD99300F1F223 /* Database.swift */; };
 		1AB3FB742B7BD9E400F1F223 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1AB3FB732B7BD9E400F1F223 /* Realm */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		1A83A4B92B7BDB400098B989 /* DatabaseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseModels.swift; sourceTree = "<group>"; };
 		1A83A4BB2B7CE9350098B989 /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
+		1A83A4BD2B7CF0940098B989 /* ConsumerModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumerModels.swift; sourceTree = "<group>"; };
 		1AB3FB372B7B96A500F1F223 /* BlinkChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AB3FB3A2B7B96A500F1F223 /* BlinkChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkChatApp.swift; sourceTree = "<group>"; };
 		1AB3FB3C2B7B96A500F1F223 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,7 +48,7 @@
 		1AB3FB642B7B9BED00F1F223 /* test-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-data.json"; sourceTree = "<group>"; };
 		1AB3FB662B7B9C2200F1F223 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1AB3FB682B7B9DEF00F1F223 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
-		1AB3FB6B2B7B9E9D00F1F223 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		1AB3FB6B2B7B9E9D00F1F223 /* ServerModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerModels.swift; sourceTree = "<group>"; };
 		1AB3FB6E2B7BA4D400F1F223 /* dummy-data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "dummy-data.json"; sourceTree = "<group>"; };
 		1AB3FB702B7BD99300F1F223 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,8 +136,9 @@
 		1AB3FB6A2B7B9E9600F1F223 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1AB3FB6B2B7B9E9D00F1F223 /* Models.swift */,
+				1AB3FB6B2B7B9E9D00F1F223 /* ServerModels.swift */,
 				1A83A4B92B7BDB400098B989 /* DatabaseModels.swift */,
+				1A83A4BD2B7CF0940098B989 /* ConsumerModels.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,9 +262,10 @@
 			files = (
 				1A83A4BA2B7BDB400098B989 /* DatabaseModels.swift in Sources */,
 				1AB3FB3D2B7B96A500F1F223 /* ContentView.swift in Sources */,
-				1AB3FB6C2B7B9E9D00F1F223 /* Models.swift in Sources */,
+				1AB3FB6C2B7B9E9D00F1F223 /* ServerModels.swift in Sources */,
 				1AB3FB3B2B7B96A500F1F223 /* BlinkChatApp.swift in Sources */,
 				1AB3FB712B7BD99300F1F223 /* Database.swift in Sources */,
+				1A83A4BE2B7CF0940098B989 /* ConsumerModels.swift in Sources */,
 				1AB3FB692B7B9DEF00F1F223 /* Client.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,26 +26,49 @@ final class StoreTests: XCTestCase {
     }
     
     func testFetchChats_success() async throws {
+        let chats: [ClientChat] = [
+            .init(id: "1", name: "Gym", updated: .now.addingTimeInterval(-60*60), messages: [.init(id: "2", updated: .now, content: "Let's go!")]),
+            .init(id: "3", name: "Honey", updated: .now.addingTimeInterval(-60*60*2), messages: [.init(id: "4", updated: .now, content: "Happy Valentine's Day!")]),
+            .init(id: "3", name: "Boss", updated: .now.addingTimeInterval(-60*60*3), messages: [.init(id: "4", updated: .now, content: "I'm on it.")])
+        ]
         
+        mockClient.fetchChats = {
+            chats
+        }
+        
+        mockDatabase.fetchChats = {
+            chats
+        }
+        
+        mockDatabase.fetchPendingMessages = {
+            [
+                .init(id: .init(), chatID: chats[0].id, created: .now, content: "I'm ready!")
+            ]
+        }
+        
+        let store = LiveStore(client: mockClient, database: mockDatabase)
+        let chatsInStore = async await store.chats()
+        XCTAssertEqual(chatsInStore.count, chats.count)
+        XCTAssertEqual(chatsInStore[0].messages.count, 2)
     }
 }
 
 private final class MockClient: APIClient {
-    var fetchChats: () async throws -> [Chat] = { throw MockError.notImplemented }
-    func chats() async throws -> [Chat] {
+    var fetchChats: () async throws -> [ClientChat] = { throw MockError.notImplemented }
+    func chats() async throws -> [ClientChat] {
         try await fetchChats()
     }
     
-    var postPendingMessage: (PendingMessage) async throws -> Message = { _ in throw MockError.notImplemented }
-    func postMessage(_ message: PendingMessage) async throws -> Message {
+    var postPendingMessage: (PendingMessage) async throws -> ClientMessage = { _ in throw MockError.notImplemented }
+    func postMessage(_ message: PendingMessage) async throws -> ClientMessage {
         try await postPendingMessage(message)
     }
 }
 
 private final class MockDatabase: Database {
     
-    var fetchChats: () -> [Chat] = { [] }
-    func chats() -> [Chat] {
+    var fetchChats: () -> [ClientChat] = { [] }
+    func chats() -> [ClientChat] {
         fetchChats()
     }
     
@@ -59,8 +82,8 @@ private final class MockDatabase: Database {
         savePendingMessage(message)
     }
     
-    var saveChats: ([Chat]) -> () = { _ in }
-    func save(_ chats: [Chat]) {
+    var saveChats: ([ClientChat]) -> () = { _ in }
+    func save(_ chats: [ClientChat]) {
         saveChats(chats)
     }
     
