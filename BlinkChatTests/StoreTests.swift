@@ -40,14 +40,14 @@ final class StoreTests: XCTestCase {
             chats
         }
         
-        mockDatabase.fetchPendingMessages = {
-            [
-                .init(id: .init(), chatID: chats[0].id, created: .now, content: "I'm ready!")
-            ]
+        mockDatabase.fetchPendingMessages = { chatID in
+            if chatID == chats[0].id {
+                return [.init(id: .init(), chatID: chats[0].id, created: .now, content: "I'm ready!")]
+            } else { return [] }
         }
         
         let store = LiveStore(client: mockClient, database: mockDatabase)
-        let chatsInStore = async await store.chats()
+        let chatsInStore = try await store.chats()
         XCTAssertEqual(chatsInStore.count, chats.count)
         XCTAssertEqual(chatsInStore[0].messages.count, 2)
     }
