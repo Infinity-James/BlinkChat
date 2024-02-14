@@ -24,6 +24,7 @@ internal final class LiveStore: Store {
         do {
             let clientChats = try await client.chats()
             merge(&chats, with: clientChats)
+            database.save(chats)
         } catch {
             //  failed to fetch from server, don't worry about it
         }

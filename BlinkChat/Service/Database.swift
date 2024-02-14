@@ -37,11 +37,17 @@ internal final class LiveDatabase: Database {
     }
     
     func save(_ message: PendingMessage) {
-        
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(message.database)
+        }
     }
     
     func save(_ chats: [Chat]) {
-        
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(chats.map { $0.database }, update: .modified)
+        }
     }
 }
 
@@ -75,5 +81,16 @@ private extension Message {
     
     init(_ database: DBMessage) {
         self.init(id: database.id, updated: database.updated, content: database.content, hasSent: !database.isPending)
+    }
+}
+
+private extension PendingMessage {
+    var database: DBMessage {
+        let db = DBMessage()
+        db.id = id.uuidString
+        db.content = content
+        db.updated = created
+        db.isPending = true
+        return db
     }
 }
