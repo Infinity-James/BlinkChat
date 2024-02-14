@@ -9,7 +9,7 @@ import Foundation
 
 public protocol APIClient: AnyObject {
     func chats() async throws -> [Chat]
-    func postMessage(_ message: PendingMessage, toChatWithID id: String) async throws -> Message
+    func postMessage(_ message: PendingMessage) async throws -> Message
 }
 
 internal final class LiveClient: APIClient {
@@ -25,8 +25,8 @@ internal final class LiveClient: APIClient {
         try await parse(network.request(Endpoint.chats.request(baseURL: baseURL)))
     }
     
-    func postMessage(_ message: PendingMessage, toChatWithID id: String) async throws -> Message {
-        try await parse(network.request(Endpoint.postMessage(message, id).request(baseURL: baseURL)))
+    func postMessage(_ message: PendingMessage) async throws -> Message {
+        try await parse(network.request(Endpoint.postMessage(message).request(baseURL: baseURL)))
     }
     
     private static let dateFormatter: ISO8601DateFormatter = {
@@ -55,14 +55,14 @@ internal final class LiveClient: APIClient {
 
 internal enum Endpoint {
     case chats
-    case postMessage(PendingMessage, Chat.ID)
+    case postMessage(PendingMessage)
     
     var path: String {
         switch self {
         case .chats:
             "/v1/chats"
-        case .postMessage(_, let chatID):
-            "/v1/chats/\(chatID)"
+        case .postMessage(let message):
+            "/v1/chats/\(message.chatID)"
         }
     }
     
@@ -79,7 +79,7 @@ internal enum Endpoint {
         switch self {
         case .chats:
             break
-        case .postMessage(let message, _):
+        case .postMessage(let message):
             request.addJSONBody(message)
         }
     }

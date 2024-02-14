@@ -28,6 +28,7 @@ public struct Message: Identifiable, Decodable {
 
 public struct PendingMessage: Identifiable, Encodable {
     public let id: UUID
+    public let chatID: Chat.ID
     public let created: Date
     public let content: String
 }

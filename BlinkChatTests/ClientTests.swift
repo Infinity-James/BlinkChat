@@ -37,7 +37,7 @@ final class ClientTests: XCTestCase {
         let client = LiveClient(baseURL: baseURL, network: mockNetwork)
         let chatID = "test-chat-id"
         let messageContent = "Test content."
-        let pendingMessage = PendingMessage(id: .init(), created: .now, content: messageContent)
+        let pendingMessage = PendingMessage(id: .init(), chatID: chatID, created: .now, content: messageContent)
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
         let messageData = try encoder.encode(pendingMessage)
@@ -58,7 +58,7 @@ final class ClientTests: XCTestCase {
             """.data(using: .utf8)
         }
         
-        let createdMessage = try await client.postMessage(pendingMessage, toChatWithID: chatID)
+        let createdMessage = try await client.postMessage(pendingMessage)
         XCTAssertEqual(createdMessage.id, messageID)
         XCTAssertEqual(createdMessage.content, messageContent)
     }
