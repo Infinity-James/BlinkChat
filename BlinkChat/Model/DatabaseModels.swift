@@ -19,11 +19,5 @@ internal final class DBMessage: Object {
     @Persisted(primaryKey: true) var id = ""
     @Persisted var content = ""
     @Persisted var updated: Date = .now
-}
-
-internal final class DBPendingMessage: Object {
-    @Persisted(primaryKey: true) var id = ""
-    @Persisted var chatID = ""
-    @Persisted var content = ""
-    @Persisted var created: Date = .now
+    @Persisted var isPending = false
 }

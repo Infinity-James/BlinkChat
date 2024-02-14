@@ -4,7 +4,7 @@ public struct Chat: Identifiable {
     public let id: String
     public let name: String
     public let updated: Date
-    public let messages: [ClientMessage]
+    public let messages: [Message]
 }
 
 public struct Message: Identifiable {

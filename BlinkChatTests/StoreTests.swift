@@ -37,7 +37,7 @@ final class StoreTests: XCTestCase {
         }
         
         mockDatabase.fetchChats = {
-            chats
+            chats.map(Chat.init)
         }
         
         mockDatabase.fetchPendingMessages = { chatID in
@@ -67,8 +67,8 @@ private final class MockClient: APIClient {
 
 private final class MockDatabase: Database {
     
-    var fetchChats: () -> [ClientChat] = { [] }
-    func chats() -> [ClientChat] {
+    var fetchChats: () -> [Chat] = { [] }
+    func chats() -> [Chat] {
         fetchChats()
     }
     
@@ -82,8 +82,8 @@ private final class MockDatabase: Database {
         savePendingMessage(message)
     }
     
-    var saveChats: ([ClientChat]) -> () = { _ in }
-    func save(_ chats: [ClientChat]) {
+    var saveChats: ([Chat]) -> () = { _ in }
+    func save(_ chats: [Chat]) {
         saveChats(chats)
     }
     

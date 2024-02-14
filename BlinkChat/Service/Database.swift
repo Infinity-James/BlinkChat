@@ -9,13 +9,13 @@ import Foundation
 import RealmSwift
 
 public protocol Database: AnyObject {
-    func chats() -> [ClientChat]
+    func chats() -> [Chat]
     
     func pendingMessages(for chatID: String) -> [PendingMessage]
     
     func save(_ message: PendingMessage)
     
-    func save(_ chats: [ClientChat])
+    func save(_ chats: [Chat])
 }
 
 internal final class LiveDatabase: Database {
@@ -26,8 +26,8 @@ internal final class LiveDatabase: Database {
         Realm.Configuration.defaultConfiguration = config
     }
     
-    func chats() -> [ClientChat] {
-        try! Realm().objects(DBChat.self).map(ClientChat.init)
+    func chats() -> [Chat] {
+        try! Realm().objects(DBChat.self).map(Chat.init)
     }
     
     func pendingMessages(for chatID: String) -> [PendingMessage] {
@@ -38,12 +38,12 @@ internal final class LiveDatabase: Database {
         
     }
     
-    func save(_ chats: [ClientChat]) {
+    func save(_ chats: [Chat]) {
         
     }
 }
 
-private extension ClientChat {
+private extension Chat {
     var database: DBChat {
         let db = DBChat()
         db.id = id
@@ -57,35 +57,21 @@ private extension ClientChat {
         self.init(id: database.id,
                   name: database.name,
                   updated: database.updated,
-                  messages: database.messages.map(ClientMessage.init))
+                  messages: database.messages.map(Message.init))
     }
 }
 
-private extension ClientMessage {
+private extension Message {
     var database: DBMessage {
         let db = DBMessage()
         db.id = id
         db.content = content
         db.updated = updated
+        db.isPending = !hasSent
         return db
     }
     
     init(_ database: DBMessage) {
-        self.init(id: database.id, updated: database.updated, content: database.content)
-    }
-}
-
-private extension PendingMessage {
-    var database: DBPendingMessage {
-        let db = DBPendingMessage()
-        db.id = id.uuidString
-        db.content = content
-        db.created = created
-        db.chatID = chatID
-        return db
-    }
-    
-    init(_ database: DBPendingMessage) {
-        self.init(id: .init(uuidString: database.id)!, chatID: database.chatID, created: database.created, content: database.content)
+        self.init(id: database.id, updated: database.updated, content: database.content, hasSent: !database.isPending)
     }
 }
