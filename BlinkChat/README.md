@@ -37,6 +37,9 @@ This is also where pending messages will be stored and attempted to be sent if a
 1. No effort was made to host the file on a server and fetch it. While simple, it would have added time, and the requirements explicitly advise against it.
 2. I'm also displeased with how I've modelled pending messages. Greater consideration could have been placed into how they are stored and served up by the Store.
 
+## Testing 
+I vlaue testing and tried to demonstrate a TDD approach here as much as time allowed. The code coverage is not extensive and the tests aren't particularly robust, but it's an example of how I approach things.
+
 ## UI and UX
 
 This is a poor example of how much I value the look and feel of the apps that I create. This is because the requirements de-emphasised this aspect of the test, and I wanted to focus on that which was prioritised in the evaluation.
