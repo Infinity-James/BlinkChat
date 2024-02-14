@@ -11,7 +11,7 @@ import RealmSwift
 public protocol Database: AnyObject {
     func chats() -> [Chat]
     
-    func pendingMessages(for chatID: String) -> [PendingMessage]
+    func pendingMessages(for chatID: String) -> [Message]
     
     func save(_ message: PendingMessage)
     
@@ -30,8 +30,10 @@ internal final class LiveDatabase: Database {
         try! Realm().objects(DBChat.self).map(Chat.init)
     }
     
-    func pendingMessages(for chatID: String) -> [PendingMessage] {
-        []
+    func pendingMessages(for chatID: String) -> [Message] {
+        try! Realm().objects(DBMessage.self)
+            .filter("chatID == %@", chatID)
+            .map(Message.init)
     }
     
     func save(_ message: PendingMessage) {

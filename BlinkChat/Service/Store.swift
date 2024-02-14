@@ -15,9 +15,9 @@ internal final class LiveStore: Store {
     }
     
     func chats() async throws -> [Chat] {
+        //  fetch the chats from the database and merge in the pending messages for that chat.
         var chats = database.chats().map { chat in
-            let pending = database.pendingMessages(for: chat.id)
-            let messages = chat.messages + pending.map(Message.init)
+            let messages = chat.messages + database.pendingMessages(for: chat.id)
             return Chat(id: chat.id, name: chat.name, updated: chat.updated, messages: messages)
         }
         

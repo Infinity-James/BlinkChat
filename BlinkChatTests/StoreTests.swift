@@ -42,7 +42,7 @@ final class StoreTests: XCTestCase {
         
         mockDatabase.fetchPendingMessages = { chatID in
             if chatID == chats[0].id {
-                return [.init(id: .init(), chatID: chats[0].id, created: .now, content: "I'm ready!")]
+                return [.init(id: .init(), updated: .now, content: "I'm ready!", hasSent: false)]
             } else { return [] }
         }
         
@@ -72,8 +72,8 @@ private final class MockDatabase: Database {
         fetchChats()
     }
     
-    var fetchPendingMessages: (String) -> [PendingMessage] = { _ in [] }
-    func pendingMessages(for chatID: String) -> [PendingMessage] {
+    var fetchPendingMessages: (String) -> [Message] = { _ in [] }
+    func pendingMessages(for chatID: String) -> [Message] {
         fetchPendingMessages(chatID)
     }
     
